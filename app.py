@@ -137,6 +137,31 @@ elif page == "Analysis":
 
 elif page == "Model":
     st.header("Model")
+    st.subheader("Used Models")
+    lst_models = [
+        "Baseline model: Logistic Regression",
+        "SGDClassifier",
+        "KNeighbors Classifier",
+        "Decision Tree Classifier",
+        "Random Forest Classifier",
+        "XGBClassifier",
+        "Ada Boost",
+        "Bagging",
+        "Extra Trees",
+        "Gradient Boosting Classifier",
+        "Stacking",
+        "Max Voting Classifier"
+]
+    for model in lst_models:
+        st.write("-", model)
+        
+    st.subheader("Score")
+    st.write("Precision = What proportion of the flights predicted delayed are actually delayed? \n Recall = What proportion of the delayed flights was predicted correctly?")
+    st.write("F1-Score")
+    st.subheader("Extra Features")
+    st.write("- historical weather data: threshold conditions when not to fly (rain, storms, ...)")
+    st.write("- wind direction: difference for flights with / against direction of wind?")
+    st.write("- events prohibiting flight departure (major political events, economy crisis, etc.) ")
     # Add your model content here
 
 elif page == "Precision":
