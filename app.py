@@ -158,11 +158,50 @@ elif page == "Model":
     st.subheader("Score")
     st.write("Precision = What proportion of the flights predicted delayed are actually delayed? \n Recall = What proportion of the delayed flights was predicted correctly?")
     st.write("F1-Score")
+    
+    ####### plot model f1 score ######### START ############
+    
+    # import data
+    df_f1_sc = pd.read_csv("data/df_f1_sc.csv")
+    
+    # Farbenliste erstellen
+    colors = plt.cm.tab10(range(10))
+
+    # Säulendiagramm erstellen
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    bar_width = 0.35
+    index = range(len(df_f1_sc))
+
+    # Bars für f1_train und f1_test mit unterschiedlichen Farben je Modell
+    for i, (train, test) in enumerate(zip(df_f1_sc['f1_train'], df_f1_sc['f1_test'])):
+        ax.bar(i, train, bar_width, label=f'f1_train' if i == 0 else "", color=colors[i], alpha=0.7)
+        ax.bar(i + bar_width, test, bar_width, label=f'f1_test' if i == 0 else "", color=colors[i], alpha=0.4)
+
+    # Achsenbeschriftungen
+    ax.set_xlabel('model')
+    ax.set_ylabel('F1 Score [-]')
+    ax.set_title('F1 Train and Test Scores for each model')
+    ax.set_xticks([i + bar_width / 2 for i in index])
+    ax.set_xticklabels(df_f1_sc.index)
+
+    # Legende hinzufügen
+    ax.legend()
+
+    # Diagramm anzeigen
+    #plt.tight_layout()
+    #plt.show()
+    
+    # Display the plot in Streamlit
+    st.pyplot(fig, use_container_width=True)
+    
+        ####### plot model f1 score ######### END ############
+    
     st.subheader("Extra Features")
     st.write("- historical weather data: threshold conditions when not to fly (rain, storms, ...)")
     st.write("- wind direction: difference for flights with / against direction of wind?")
     st.write("- events prohibiting flight departure (major political events, economy crisis, etc.) ")
-    # Add your model content here
+
 
 elif page == "Precision":
     st.header("Precision")
