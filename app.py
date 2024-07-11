@@ -48,26 +48,6 @@ if page == "Case Study":
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Data Analysis page
 elif page == "Data":
     st.header("Data")
