@@ -165,18 +165,18 @@ elif page == "Model":
     st.header("Model")
     st.subheader("Used Models")
     lst_models = [
-        "Baseline model: Logistic Regression",
-        "SGDClassifier",
-        "KNeighbors Classifier",
-        "Decision Tree Classifier",
-        "Random Forest Classifier",
-        "XGBClassifier",
+        "Logistic Regression (BM)",
+        "SGD Class.",
+        "KNeighbors Class.",
+        "Decision Tree Class.",
+        "Random Forest Class.",
+        "XGB Class.",
         "Ada Boost",
         "Bagging",
         "Extra Trees",
-        "Gradient Boosting Classifier",
-        "Stacking",
-        "Max Voting Classifier"
+        "Gradient Boosting Class.",
+        #"Stacking",
+        #"Max Voting Class."
 ]
     for model in lst_models:
         st.write("-", model)
@@ -189,6 +189,8 @@ elif page == "Model":
     
     # import data
     df_f1_sc = pd.read_csv("data/df_f1_sc.csv")
+    
+    st.dataframe(df_f1_sc)
     
     # Farbenliste erstellen
     colors = plt.cm.tab10(range(10))
@@ -206,10 +208,10 @@ elif page == "Model":
 
     # Achsenbeschriftungen
     ax.set_xlabel('model')
-    ax.set_ylabel('F1 Score [-]')
+    ax.set_ylabel('F1 Score (weighted average)  [-]')
     ax.set_title('F1 Train and Test Scores for each model')
     ax.set_xticks([i + bar_width / 2 for i in index])
-    ax.set_xticklabels(df_f1_sc.index)
+    ax.set_xticklabels(df_f1_sc.model)
 
     # Legende hinzufügen
     ax.legend()
@@ -219,6 +221,7 @@ elif page == "Model":
     #plt.show()
     
     # Display the plot in Streamlit
+    plt.xticks(rotation=60)
     st.pyplot(fig, use_container_width=True)
     
         ####### plot model f1 score ######### END ############
