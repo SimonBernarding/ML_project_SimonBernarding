@@ -1,9 +1,14 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 from PIL import Image
 import base64
 from io import BytesIO
+
+# Import of chart packages
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+import altair as alt
 
 # Set page config
 st.set_page_config(page_title="Flight Delay Presentation", page_icon="images/flight.ico", layout="wide")
@@ -41,6 +46,8 @@ if page == "Case Study":
     st.subheader("Target")
     st.write("- Delay")
 
+
+
 # Data Analysis page
 elif page == "Data":
     st.header("Data")
@@ -55,12 +62,14 @@ elif page == "Data":
     st.subheader("DataFrame")
     st.write(df.head())
 
+    st.write("- In total 107833 entries")
+    st.write("- No missing values")
+    st.write("- No duplicates")
+
     def load_data():
         return pd.read_csv("data/data.csv")
 
     df = load_data()
-
-    st.subheader("Distribution of Airports")
 
     # Create the scatter plot
     fig = px.scatter_mapbox(df, lat="latitude_arr", lon="longitude_arr", 
@@ -103,13 +112,28 @@ elif page == "Data":
     st.plotly_chart(fig, use_container_width=True)
 
     # Optional: Add a data table below the map
-    if st.checkbox("Show raw data"):
-        st.write(df)
+    # if st.checkbox("Show raw data"):
+        # st.write(df)
 
 # Other pages
 elif page == "Analysis":
     st.header("Analysis")
     # Add your analysis content here
+    st.subheader("EDA")
+    
+    st.write("- About 64 % of flights are delayed")
+    st.write("- Mean: 75 min, Std: 139 min, Median: 30 min, Max: 3451 min")
+
+    image = Image.open('images/target_distribution_delayed.png')
+    st.image(image, caption='Distribution of delay time in minutes', use_column_width=True, width = 5)
+
+    st.write("- 3 most frequent flight routes: ORY-TUN, TUN-ORY, TUN-TUN")
+    st.write("- Departure airport same as arrival airport: could be e.g. flight school")
+    st.write("- Top 3 flight routes with most delay: ORY-TUN, TUN-ORY, IST-TUN")
+    st.write("- ORY-TUN (Paris-Tunis) contributes 9.27 % to total delay time")
+    
+
+    
 
 elif page == "Model":
     st.header("Model")
