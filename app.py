@@ -1,9 +1,14 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 from PIL import Image
 import base64
 from io import BytesIO
+
+# Import of chart packages
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+import altair as alt
 
 # Set page config
 st.set_page_config(page_title="Flight Delay Presentation", page_icon="images/flight.ico", layout="wide")
@@ -77,6 +82,10 @@ elif page == "Data":
     st.subheader("DataFrame")
     st.write(df.head())
 
+    st.write("- In total 107833 entries")
+    st.write("- No missing values")
+    st.write("- No duplicates")
+
     def load_data():
         return pd.read_csv("data/data.csv")
 
@@ -125,8 +134,27 @@ elif page == "Data":
     st.plotly_chart(fig, use_container_width=True)
 
     # Optional: Add a data table below the map
-    if st.checkbox("Show raw data"):
-        st.write(df)
+    # if st.checkbox("Show raw data"):
+        # st.write(df)
+
+    st.subheader("EDA")
+    
+    st.write("- About 64% of flights are delayed")
+
+    # Overview of target distribution
+    print("General statistics of target:\n", (df['target']).describe())
+
+    # Creating a figure composed of two matplotlib.Axes objects (ax_box and ax_hist)
+    f, (ax_box, ax_hist) = plt.subplots(2, sharex=True, gridspec_kw={"height_ratios": (.15, .85)})
+    
+    # Assigning a graph to each ax
+    sns.boxplot(df["target"], orient="h", ax=ax_box, color='lightblue')
+    sns.histplot(data=df, x="target", ax=ax_hist, color='lightblue')
+
+    # Remove x axis name for the boxplot
+    ax_box.set(xlabel='')
+    ax_box.set_xlim([-20, 500])
+    plt.show()
 
 # Other pages
 elif page == "Analysis":
