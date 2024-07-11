@@ -71,8 +71,6 @@ elif page == "Data":
 
     df = load_data()
 
-    st.subheader("Distribution of Airports")
-
     # Create the scatter plot
     fig = px.scatter_mapbox(df, lat="latitude_arr", lon="longitude_arr", 
                             color_discrete_sequence=["teal"], zoom=2)
@@ -117,29 +115,25 @@ elif page == "Data":
     # if st.checkbox("Show raw data"):
         # st.write(df)
 
-    st.subheader("EDA")
-    
-    st.write("- About 64% of flights are delayed")
-
-    # Overview of target distribution
-    print("General statistics of target:\n", (df['target']).describe())
-
-    # Creating a figure composed of two matplotlib.Axes objects (ax_box and ax_hist)
-    f, (ax_box, ax_hist) = plt.subplots(2, sharex=True, gridspec_kw={"height_ratios": (.15, .85)})
-    
-    # Assigning a graph to each ax
-    sns.boxplot(df["target"], orient="h", ax=ax_box, color='lightblue')
-    sns.histplot(data=df, x="target", ax=ax_hist, color='lightblue')
-
-    # Remove x axis name for the boxplot
-    ax_box.set(xlabel='')
-    ax_box.set_xlim([-20, 500])
-    plt.show()
-
 # Other pages
 elif page == "Analysis":
     st.header("Analysis")
     # Add your analysis content here
+    st.subheader("EDA")
+    
+    st.write("- About 64 % of flights are delayed")
+    st.write("- Mean: 75 min, Std: 139 min, Median: 30 min, Max: 3451 min")
+
+    image = Image.open('images/target_distribution_delayed.png')
+    st.image(image, caption='Distribution of delay time in minutes', use_column_width=True, width = 5)
+
+    st.write("- 3 most frequent flight routes: ORY-TUN, TUN-ORY, TUN-TUN")
+    st.write("- Departure airport same as arrival airport: could be e.g. flight school")
+    st.write("- Top 3 flight routes with most delay: ORY-TUN, TUN-ORY, IST-TUN")
+    st.write("- ORY-TUN (Paris-Tunis) contributes 9.27 % to total delay time")
+    
+
+    
 
 elif page == "Model":
     st.header("Model")
