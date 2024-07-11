@@ -137,4 +137,4 @@ dmypy.json
 
 # Data 
 data/
-model/*.joblib
+models/*.joblib
