@@ -41,6 +41,28 @@ if page == "Case Study":
     st.subheader("Target")
     st.write("- Delay")
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Data Analysis page
 elif page == "Data":
     st.header("Data")
