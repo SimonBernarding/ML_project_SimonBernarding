@@ -159,7 +159,7 @@ elif page == "Analysis":
 
 
     image = Image.open('images/delay_categories_distribution.png')
-    st.image(image, caption='Different categories for target', use_column_width=True)
+    st.image(image, use_column_width=True)
 
     
 
