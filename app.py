@@ -230,6 +230,13 @@ elif page == "Model":
     
         ####### plot model f1 score ######### END ############
     
+        ####### plot f1 score category-wise ####### START ########
+    
+    image = Image.open('images/F1_Train_Test_all_models_percategory.png')
+    st.image(image, caption='F1 TEST score per category', use_column_width=True)    
+        
+        
+        
     st.subheader("Extra Features")
     st.write("- historical weather data: threshold conditions when not to fly (rain, storms, ...)")
     st.write("- wind direction: difference for flights with / against direction of wind?")
