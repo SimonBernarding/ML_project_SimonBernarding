@@ -32,6 +32,7 @@ st.write(inline_title, unsafe_allow_html=True)
 
 # Sidebar for navigation
 page = st.sidebar.radio("Overview", ["Case Study", "Data", "Analysis", "Model"])
+page = st.sidebar.radio("Overview", ["Case Study", "Data", "Analysis", "Model"])
 
 # Introduction page
 if page == "Case Study":
@@ -167,18 +168,18 @@ elif page == "Model":
     st.header("Model")
     st.subheader("Used Models")
     lst_models = [
-        "Logistic Regression (BM)",
-        "SGD",
-        "KNeighbors",
-        "Decision Tree",
-        "Random Forest",
-        "XGB",
-        "Ada Boost",
-        "Bagging",
-        "Extra Trees",
-        "Gradient Boosting",
-        "Stacking (1-9)",
-        "Max Voting (1-9)"
+        "0 Logistic Regression (BM)",
+        "1 SGD",
+        "2 KNeighbors",
+        "3 Decision Tree",
+        "4 Random Forest",
+        "5 XGB",
+        "6 Ada Boost",
+        "7 Bagging",
+        "8 Extra Trees",
+        "9 Gradient Boosting",
+        "10 Stacking (1-9)",
+        "11 Max Voting (1-9)"
 ]
     for model in lst_models:
         st.write("-", model)
@@ -248,7 +249,6 @@ elif page == "Model":
     st.subheader("Model optimization")
     st.write("- hyper parameter optimization: grid search cv or random grid search cv does sometimes lead to worse models. Why?")
     st.write("- SMOTE for inbalanced data?")
-
 
 # Footer
 st.sidebar.markdown("---")
