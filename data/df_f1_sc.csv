@@ -9,3 +9,5 @@ Ada Boost,0.36,0.36
 Bagging,0.48,0.4
 Extra Trees,0.8,0.45
 Gradient Boosting Class.,0.43,0.43
+Stacking,0.46,0.42
+Max Voting Class.,0.72,0.48
