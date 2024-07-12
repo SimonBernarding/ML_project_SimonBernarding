@@ -168,17 +168,17 @@ elif page == "Model":
     st.subheader("Used Models")
     lst_models = [
         "Logistic Regression (BM)",
-        "SGD Class.",
-        "KNeighbors Class.",
-        "Decision Tree Class.",
-        "Random Forest Class.",
-        "XGB Class.",
+        "SGD",
+        "KNeighbors",
+        "Decision Tree",
+        "Random Forest",
+        "XGB",
         "Ada Boost",
         "Bagging",
         "Extra Trees",
-        "Gradient Boosting Class.",
-        #"Stacking",
-        #"Max Voting Class."
+        "Gradient Boosting",
+        "Stacking (1-9)",
+        "Max Voting (1-9)"
 ]
     for model in lst_models:
         st.write("-", model)
@@ -193,7 +193,7 @@ elif page == "Model":
     # import data
     df_f1_sc = pd.read_csv("data/df_f1_sc.csv")
     
-    st.dataframe(df_f1_sc)
+    #st.dataframe(df_f1_sc)
     
     # Farbenliste erstellen
     colors = [
@@ -227,7 +227,7 @@ elif page == "Model":
     #plt.show()
     
     # Display the plot in Streamlit
-    plt.xticks(rotation=60)
+    plt.xticks(rotation=90)
     st.pyplot(fig, use_container_width=True)
     
         ####### plot model f1 score ######### END ############
@@ -235,16 +235,18 @@ elif page == "Model":
         ####### plot f1 score category-wise ####### START ########
     
     image = Image.open('images/F1_Train_Test_all_models_percategory.png')
-    st.image(image, caption='F1 TEST score per category', use_column_width=True)    
+    st.image(image, caption='F1 TEST score per category', use_column_width=False, width=600)    
+      ####### plot f1 score category-wise ####### END ########  
         
-        
-        
+              ####### plot f1 score category-wise ####### END ########
+            
     st.subheader("Extra Features")
     st.write("- historical weather data: threshold conditions when not to fly (rain, storms, ...)")
     st.write("- wind direction: difference for flights with / against direction of wind?")
     st.write("- events prohibiting flight departure (major political events, economy crisis, etc.) ")
 
-
+    st.subheader("Model optimization")
+    st.write("- hyper parameter optimization: grid search cv or random grid search cv does sometimes lead to worse models. Why?")
 # elif page == "Precision":
 #     st.header("Precision")
 #     # Add your precision content here
