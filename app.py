@@ -247,6 +247,7 @@ elif page == "Model":
 
     st.subheader("Model optimization")
     st.write("- hyper parameter optimization: grid search cv or random grid search cv does sometimes lead to worse models. Why?")
+    st.write("- SMOTE for inbalanced data?")
 # elif page == "Precision":
 #     st.header("Precision")
 #     # Add your precision content here
