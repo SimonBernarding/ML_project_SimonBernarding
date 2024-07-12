@@ -115,6 +115,7 @@ elif page == "Data":
     # if st.checkbox("Show raw data"):
         # st.write(df)
 
+
 # Other pages
 elif page == "Analysis":
     st.header("Analysis")
