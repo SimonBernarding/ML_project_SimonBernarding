@@ -194,7 +194,6 @@ df = df.drop(['depstn', 'arrstn', 'status', 'airline_1', 'airplane_model'], axis
 duplicate_columns = df.columns[df.columns.duplicated()]
 df = df.loc[:, ~df.columns.duplicated()]
 
-#Target engeneering
 # Convert target into certain category intervals
 
 def target_interval(row):
@@ -212,7 +211,7 @@ def target_interval(row):
         return 6  
     
 df['target_cat'] = df.apply(target_interval, axis=1)
-
+    
 # Standardization
 
 # Create a StandardScaler object
@@ -231,7 +230,43 @@ y = df['target_cat']
 X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=0.2, random_state=RSEED)
 
 # Train model
+# Define the parameter distribution for random search
+param_dist = {
+    'n_estimators': randint(50, 100),  # Reduced upper bound
+    'learning_rate': uniform(0.01, 0.5),  # Reduced upper bound
+    'base_estimator__max_depth': randint(1, 5),  # Reduced upper bound
+    'base_estimator__min_samples_split': randint(2, 10),  # Reduced upper bound
+    'base_estimator__min_samples_leaf': randint(1, 10),  # Reduced upper bound
+    'algorithm': ['SAMME', 'SAMME.R']
+}
 
+# Create a base model
+base_estimator = DecisionTreeClassifier(random_state=RSEED)
+ada = AdaBoostClassifier(base_estimator=base_estimator, random_state=RSEED)
+
+# Create a custom scorer (you can change this to other metrics if needed)
+scorer = make_scorer(f1_score)
+
+# Instantiate RandomizedSearchCV object
+random_search = RandomizedSearchCV(
+    estimator=ada,
+    param_distributions=param_dist,
+    n_iter=50,  # Reduced number of iterations
+    cv=3,  # Reduced number of cross-validation folds
+    scoring=scorer,
+    random_state=RSEED,
+    n_jobs=-1  # use all available cores
+)
+
+# Fit RandomizedSearchCV
+random_search.fit(X_train, y_train)
+
+# Print the best parameters and score
+print("Best parameters:", random_search.best_params_)
+print("Best cross-validation score:", random_search.best_score_)
+
+# Get the best model
+model = random_search.best_estimator_
 
 # Save the model
 dump(model, 'models/model.joblib')
