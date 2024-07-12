@@ -2,7 +2,17 @@
 
 ## Flight Prediction Test on Airport Data from Tunesian Airline
 
-Based on several machine learning classifier this project tries to predict delays of individual airplanes. 
+Based on several machine learning classifier this project tries to predict delays of individual airplanes.
+
+### Set up the Presentation
+
+- Thre presentation can be started with streamlit. Make sure to have streamlit installed in your directory, as described in the requirements. 
+
+     ```BASH
+    streamlit run app.py
+    ```
+    After that a local host is started in your standard browser. 
+ 
 
 
 ## Set up your Environment
