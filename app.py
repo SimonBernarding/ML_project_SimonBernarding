@@ -32,6 +32,7 @@ st.write(inline_title, unsafe_allow_html=True)
 
 # Sidebar for navigation
 page = st.sidebar.radio("Overview", ["Case Study", "Data", "Analysis", "Model"])
+page = st.sidebar.radio("Overview", ["Case Study", "Data", "Analysis", "Model"])
 
 # Introduction page
 if page == "Case Study":
@@ -159,7 +160,7 @@ elif page == "Analysis":
 
 
     image = Image.open('images/delay_categories_distribution.png')
-    st.image(image, caption='Different categories for target', use_column_width=True)
+    st.image(image, use_column_width=True)
 
     
 
