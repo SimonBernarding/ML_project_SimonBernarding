@@ -1,0 +1,11 @@
+model,f1_train,f1_test
+Logistic Regression (BM),0.44,0.43
+SGD Class.,0.4,0.4
+KNeighbors Class.,0.57,0.46
+Decision Tree Class.,0.58,0.47
+Random Forest Class.,0.58,0.58
+XGB Class.,0.52,0.48
+Ada Boost,0.36,0.36
+Bagging,0.48,0.4
+Extra Trees,0.8,0.45
+Gradient Boosting Class.,0.43,0.43
