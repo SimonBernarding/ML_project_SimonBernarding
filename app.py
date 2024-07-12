@@ -129,7 +129,7 @@ elif page == "Analysis":
     st.write("- 3 most frequent flight routes: ORY-TUN, TUN-ORY, TUN-TUN")
     st.write("- departure airport same as arrival airport: could be e.g. flight school")
     st.write("- top 3 flight routes with most delay time: ORY-TUN, TUN-ORY, IST-TUN")
-    st.write("- ORY-TUN (Paris-Tunis) contributes ~5 % to total delay time")
+    #st.write("- ORY-TUN (Paris-Tunis) contributes ~5 % to total delay time")
     st.write("\n\n")
     st.write("\n\n")
     st.write("Get additional information:")
@@ -143,20 +143,21 @@ elif page == "Analysis":
     st.write("- binary encoding for categorical features e.g. airport, airline, producer")
     st.write("- drop unnecessary columns")
     st.write("- convert target into categories")
+    st.write("- standardization of data before splitting and training")
 
     st.write("\n\n")
     st.write("\n\n")
 
-    data = {'Interval': ["No delay", "0 - 30 min", "30 - 60 min", "60 - 120 min", "120 - 240 min", "> 240 min"]}
-    df_cat = pd.DataFrame(data)
-    df_cat.index += 1
-    st.dataframe(df_cat)
+    #data = {'Interval': ["No delay", "0 - 30 min", "30 - 60 min", "60 - 120 min", "120 - 240 min", "> 240 min"]}
+    #df_cat = pd.DataFrame(data)
+    #df_cat.index += 1
+    #st.dataframe(df_cat)
 
     st.write("\n\n")
     st.write("\n\n")
 
 
-    image = Image.open('images/target_cat_distribution.png')
+    image = Image.open('images/delay_categories_distribution.png')
     st.image(image, caption='Different categories for target', use_column_width=True)
 
     
