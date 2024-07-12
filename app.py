@@ -31,7 +31,7 @@ inline_title = f"""
 st.write(inline_title, unsafe_allow_html=True)
 
 # Sidebar for navigation
-page = st.sidebar.radio("Overview", ["Case Study", "Data", "Analysis", "Model", "Precision"])
+page = st.sidebar.radio("Overview", ["Case Study", "Data", "Analysis", "Model"])
 
 # Introduction page
 if page == "Case Study":
@@ -248,9 +248,7 @@ elif page == "Model":
     st.subheader("Model optimization")
     st.write("- hyper parameter optimization: grid search cv or random grid search cv does sometimes lead to worse models. Why?")
     st.write("- SMOTE for inbalanced data?")
-# elif page == "Precision":
-#     st.header("Precision")
-#     # Add your precision content here
+
 
 # Footer
 st.sidebar.markdown("---")
