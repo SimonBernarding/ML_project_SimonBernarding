@@ -124,7 +124,7 @@ elif page == "Analysis":
     st.write("- mean: 75 min, std: 139 min, median: 30 min, max: 3451 min")
 
     image = Image.open('images/target_distribution_delayed.png')
-    st.image(image, caption='Target distribution (delay time in min)', use_column_width=True)
+    st.image(image, caption='Target distribution (delay time in min)', use_column_width=False, width=800)
 
     st.write("- 3 most frequent flight routes: ORY-TUN, TUN-ORY, TUN-TUN")
     st.write("- departure airport same as arrival airport: could be e.g. flight school")
@@ -182,7 +182,8 @@ elif page == "Model":
         st.write("-", model)
         
     st.subheader("Score")
-    st.write("Precision = What proportion of the flights predicted delayed are actually delayed? \n Recall = What proportion of the delayed flights was predicted correctly?")
+    st.write("Precision = What proportion of the flights predicted delayed are actually delayed?")
+    st.write("Recall = What proportion of the delayed flights was predicted correctly?")
     st.write("F1-Score")
     
     ####### plot model f1 score ######### START ############
@@ -193,10 +194,13 @@ elif page == "Model":
     st.dataframe(df_f1_sc)
     
     # Farbenliste erstellen
-    colors = plt.cm.tab10(range(10))
-
+    colors = [
+    '#1F77B4', '#FF7F0E', '#2CA02C', '#D62728', '#9467BD', '#8C564B',
+    '#E377C2', '#7F7F7F', '#BCBD22', '#17BECF', '#AEC7E8', '#FFBB78'
+    ]
+   
     # Säulendiagramm erstellen
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(8, 4))
 
     bar_width = 0.35
     index = range(len(df_f1_sc))
@@ -232,9 +236,9 @@ elif page == "Model":
     st.write("- events prohibiting flight departure (major political events, economy crisis, etc.) ")
 
 
-elif page == "Precision":
-    st.header("Precision")
-    # Add your precision content here
+# elif page == "Precision":
+#     st.header("Precision")
+#     # Add your precision content here
 
 # Footer
 st.sidebar.markdown("---")
